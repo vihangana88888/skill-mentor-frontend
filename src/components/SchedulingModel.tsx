@@ -54,11 +54,11 @@ export function SchedulingModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px]">
-        <DialogHeader className="flex flex-row items-center justify-between space-y-0">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="flex flex-row items-center justify-center space-y-0">
           <DialogTitle>Schedule this session</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-medium mb-2">Choose a date</h4>
             <Calendar
