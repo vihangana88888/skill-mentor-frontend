@@ -53,8 +53,8 @@ export default function DashboardPage() {
             {/* Profile Image */}
             <div className="w-12 h-12 rounded-full bg-white/10 mb-4">
               <img
-                src={course.imageUrl}
-                alt={course.mentor}
+                src={course.mentorImageUrl}
+                alt={course.mentorName}
                 className="w-full h-full rounded-full object-cover"
               />
             </div>
@@ -62,9 +62,9 @@ export default function DashboardPage() {
             {/* Course Info */}
             <div className="space-y-1">
               <h2 className="text-xl font-semibold text-white">
-                {course.title}
+                {course.courseTitle}
               </h2>
-              <p className="text-blue-100/80">Mentor: {course.mentor}</p>
+              <p className="text-blue-100/80">Mentor: {course.mentorName}</p>
               <div className="flex items-center text-blue-100/80 text-sm mt-2">
                 <CalendarDays className="mr-2 h-4 w-4" />
                 Next Session:{" "}

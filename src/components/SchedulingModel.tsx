@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Calendar } from "./ui/calendar";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
 import { useNavigate } from "react-router";
 import type { Mentor } from "@/lib/types";
 
@@ -43,10 +49,10 @@ export function SchedulingModal({
       const sessionId = `${mentor.id}-${Date.now()}`;
       const searchParams = new URLSearchParams({
         date: sessionDateTime.toISOString(),
-        courseTitle: mentor.name,
-        mentorName: mentor.location,
+        courseTitle: mentor.courseTitle,
+        mentorName: mentor.mentorName,
         mentorId: mentor.id,
-        mentorImg: mentor.locationImgUrl,
+        mentorImg: mentor.mentorImageUrl,
       });
       navigate(`/payment/${sessionId}?${searchParams.toString()}`);
     }
@@ -57,6 +63,10 @@ export function SchedulingModal({
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader className="flex flex-row items-center justify-center space-y-0">
           <DialogTitle>Schedule this session</DialogTitle>
+          <DialogDescription className="sr-only">
+            Pick a date and time for your mentoring session with{" "}
+            {mentor.mentorName}.
+          </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

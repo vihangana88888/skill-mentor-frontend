@@ -19,7 +19,7 @@ export function MentorCard({ mentor }: MentorCardProps) {
   const { isAuthenticated } = useAuth();
 
   // Use a simple threshold to decide if the bio is long enough
-  const bioTooLong = mentor.bio.length > 200;
+  const bioTooLong = mentor.description.length > 200;
 
   const handleSchedule = () => {
     if (!isAuthenticated) {
@@ -35,7 +35,7 @@ export function MentorCard({ mentor }: MentorCardProps) {
         <div className="p-6 flex-1 flex flex-col">
           <div className="flex justify-between items-start mb-4">
             <div className="space-y-2">
-              <h3 className="font-semibold text-xl">{mentor.name}</h3>
+              <h3 className="font-semibold text-xl">{mentor.courseTitle}</h3>
               <div className="flex items-center space-x-2">
                 <ThumbsUp className="size-6" />
                 <p className="text-sm text-muted-foreground">
@@ -44,11 +44,11 @@ export function MentorCard({ mentor }: MentorCardProps) {
               </div>
               <div className="flex items-center space-x-2">
                 <img
-                  src={mentor.locationImgUrl || "/placeholder.svg"}
-                  alt={mentor.location}
+                  src={mentor.mentorImageUrl}
+                  alt={mentor.mentorName}
                   className="size-6 object-cover rounded-full"
                 />
-                <span className="text-sm">{mentor.location}</span>
+                <span className="text-sm">{mentor.mentorName}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Building2 className="size-6" />
@@ -60,16 +60,16 @@ export function MentorCard({ mentor }: MentorCardProps) {
               </div>
             </div>
             <div className="size-20 rounded-full overflow-hidden">
-              {mentor.imageUrl ? (
+              {mentor.courseImageUrl ? (
                 <img
-                  src={mentor.imageUrl || "/placeholder.svg"}
-                  alt={mentor.name}
+                  src={mentor.courseImageUrl}
+                  alt={mentor.courseTitle}
                   className="w-full h-full object-cover"
                 />
               ) : (
                 <div className="w-full h-full bg-muted flex items-center justify-center">
                   <span className="text-2xl font-semibold">
-                    {mentor.name.charAt(0)}
+                    {mentor.courseTitle.charAt(0)}
                   </span>
                 </div>
               )}
@@ -84,7 +84,7 @@ export function MentorCard({ mentor }: MentorCardProps) {
                   !isExpanded && bioTooLong ? "line-clamp-3" : ""
                 )}
               >
-                {mentor.bio}
+                {mentor.description}
               </p>
               {bioTooLong && (
                 <button

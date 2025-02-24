@@ -1,21 +1,21 @@
 export interface Mentor {
   id: string;
-  name: string;
-  positiveReviews: number;
-  location: string;
-  locationImgUrl: string;
+  courseTitle: string;
+  description: string;
+  mentorName: string;
+  mentorImageUrl: string;
+  courseImageUrl: string;
   startYear: string;
-  imageUrl: string;
-  bio: string;
-  isCertified: boolean;
+  positiveReviews: number;
   enrollments: number;
+  isCertified: boolean;
 }
 
 export interface Course {
   id: string;
-  title: string;
-  mentor: string;
-  imageUrl: string;
+  courseTitle: string;
+  mentorName: string;
+  mentorImageUrl: string;
   status: "pending" | "accepted" | "completed" | "cancelled";
   nextSession: string;
 }

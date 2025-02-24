@@ -57,9 +57,9 @@ export default function PaymentPage() {
     try {
       const newCourse: Course = {
         id: sessionId,
-        title: courseTitle,
-        mentor: mentorName,
-        imageUrl: mentorImg,
+        courseTitle: courseTitle,
+        mentorName: mentorName,
+        mentorImageUrl: mentorImg,
         status: "pending",
         nextSession: date,
       };
@@ -82,7 +82,6 @@ export default function PaymentPage() {
           "There was a problem scheduling your session. Please try again.",
         variant: "destructive",
       });
-    } finally {
       setIsUploading(false);
     }
   };

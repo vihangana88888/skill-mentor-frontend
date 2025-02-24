@@ -22,12 +22,12 @@ export function SignupDialog({ isOpen, onClose }: SignupDialogProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="p-0 border-none rounded-2xl max-w-[440px]">
+      <DialogContent className="overflow-hidden p-0 border-none rounded-2xl max-w-[440px]">
         <DialogTitle className="sr-only">Sign up to SkillMentor</DialogTitle>
         <DialogDescription className="sr-only">
           Sign up dialog to access SkillMentor's tutor booking features
         </DialogDescription>
-        <div className="px-8 py-10 bg-white">
+        <div className="px-8 py-10 bg-white rounded-2xl">
           <h2 className="text-2xl font-semibold tracking-tight mb-4">
             Sign up to see all our amazing tutors
           </h2>
