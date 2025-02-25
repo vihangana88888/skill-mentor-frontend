@@ -10,4 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ["date-fns"],
+      output: {
+        globals: {
+          "date-fns": "dateFns",
+        },
+      },
+    },
+  },
 });
