@@ -4,6 +4,7 @@ export interface Mentor {
   description: string;
   mentorName: string;
   mentorImageUrl: string;
+  mentorCompany: string;
   courseImageUrl: string;
   startYear: string;
   positiveReviews: number;

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Building2, Calendar, GraduationCap, ThumbsUp } from "lucide-react";
+import {
+  Building2,
+  Calendar,
+  GraduationCap,
+  ShieldCheck,
+  ThumbsUp,
+} from "lucide-react";
 import type { Mentor } from "@/lib/types";
 import { useAuth } from "@/lib/auth-context";
 import { SchedulingModal } from "@/components/SchedulingModel";
@@ -52,22 +58,22 @@ export function MentorCard({ mentor }: MentorCardProps) {
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Building2 className="size-6" />
-                <span>Tech Lead at IFS</span>
+                <span>{mentor.mentorCompany}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Calendar className="size-6" />
                 <span>Tutor since {mentor.startYear}</span>
               </div>
             </div>
-            <div className="size-20 rounded-full overflow-hidden">
+            <div className="w-36">
               {mentor.courseImageUrl ? (
                 <img
                   src={mentor.courseImageUrl}
                   alt={mentor.courseTitle}
-                  className="w-full h-full object-cover"
+                  className="size-20 object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-muted flex items-center justify-center">
+                <div className="size-20 bg-muted flex items-center justify-center">
                   <span className="text-2xl font-semibold">
                     {mentor.courseTitle.charAt(0)}
                   </span>
@@ -99,13 +105,20 @@ export function MentorCard({ mentor }: MentorCardProps) {
 
           <div className="mt-auto">
             <h4 className="font-medium mb-2">Highlights</h4>
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-3 rounded-md">
+            <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-3 rounded-md flex flex-col gap-4">
               <div className="flex items-center space-x-2">
                 <GraduationCap className="w-4 h-4" />
                 <span className="text-sm">
                   {mentor.enrollments} Enrollments
                 </span>
               </div>
+
+              {mentor.isCertified && (
+                <div className="flex items-center space-x-2">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span className="text-sm">Certified Teacher</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

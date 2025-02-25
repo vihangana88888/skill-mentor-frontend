@@ -51,7 +51,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Profile Image */}
-            <div className="w-12 h-12 rounded-full bg-white/10 mb-4">
+            <div className="size-24 rounded-full bg-white/10 mb-4">
               <img
                 src={course.mentorImageUrl}
                 alt={course.mentorName}

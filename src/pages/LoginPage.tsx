@@ -9,7 +9,9 @@ import { useAuth } from "@/lib/auth-context";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Mail, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import AWSCertified1Img from "@/assets/aws-certified.webp";
+import AWSCertified1Img from "@/assets/aws-certified-1.webp";
+import MicrosoftCertified1Img from "@/assets/microsoft-certified-1.webp";
+import AWSCertified3Img from "@/assets/aws-certified-3.webp";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       setError("Invalid email or password. Please try again.");
     } finally {
@@ -71,7 +73,7 @@ export default function LoginPage() {
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            {[AWSCertified1Img, AWSCertified1Img, AWSCertified1Img].map(
+            {[AWSCertified1Img, MicrosoftCertified1Img, AWSCertified3Img].map(
               (src, i) => (
                 <div
                   key={i}
