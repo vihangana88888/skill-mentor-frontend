@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate, Link } from "react-router";
 import { useAuth } from "@/lib/auth-context";
 import SkillMentorLogo from "@/assets/logo.webp";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";

@@ -8,7 +8,7 @@ import { Course } from "@/lib/types";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
 
   const updateCourses = useCallback(() => {
@@ -55,7 +55,7 @@ export default function DashboardPage() {
               <img
                 src={course.mentorImageUrl}
                 alt={course.mentorName}
-                className="w-full h-full rounded-full object-cover"
+                className="w-full h-full rounded-full object-cover object-top"
               />
             </div>
 
