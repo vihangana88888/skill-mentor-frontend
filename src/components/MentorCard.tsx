@@ -52,7 +52,7 @@ export function MentorCard({ mentor }: MentorCardProps) {
                 <img
                   src={mentor.mentorImageUrl}
                   alt={mentor.mentorName}
-                  className="size-6 object-cover rounded-full"
+                  className="size-6 object-cover object-top rounded-full"
                 />
                 <span className="text-sm">{mentor.mentorName}</span>
               </div>

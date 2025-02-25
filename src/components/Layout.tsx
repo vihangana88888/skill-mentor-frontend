@@ -1,7 +1,7 @@
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { ReactNode } from "react";
-import { ToastProvider, ToastViewport, Toast } from "./ui/toast";
+import { ToastProvider, ToastViewport } from "./ui/toast";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -12,7 +12,6 @@ export default function Layout({ children }: { children: ReactNode }) {
         <Footer />
       </section>
       <ToastViewport />
-      <Toast />
     </ToastProvider>
   );
 }
