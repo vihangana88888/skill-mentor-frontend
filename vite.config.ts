@@ -8,8 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "date-fns": "date-fns",
-      "date-fns/locale": "date-fns/locale/index.js",
     },
   },
   build: {
@@ -21,8 +19,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  optimizeDeps: {
-    include: ["date-fns", "react-day-picker"],
   },
 });
