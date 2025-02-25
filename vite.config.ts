@@ -10,12 +10,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ["date-fns"],
+  },
   build: {
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
+    },
     rollupOptions: {
-      external: ["date-fns"],
       output: {
-        globals: {
-          "date-fns": "dateFns",
+        manualChunks: {
+          "date-fns": ["date-fns"],
         },
       },
     },
