@@ -77,6 +77,7 @@ export function Navigation() {
       ) : (
         <>
           <SignInButton
+            forceRedirectUrl="/dashboard"
             mode="modal"
             appearance={{
               elements: {
