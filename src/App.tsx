@@ -4,37 +4,45 @@ import HomePage from "@/pages/HomePage";
 import LoginPage from "@/pages/LoginPage";
 import DashboardPage from "@/pages/DashboardPage";
 import PaymentPage from "@/pages/PaymentPage";
-import ProtectedRoute from "@/components/ProtectedRoute";
-import { AuthProvider } from "@/lib/auth-context";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <SignedIn>
                   <DashboardPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/payment/:sessionId"
-              element={
-                <ProtectedRoute>
+                </SignedIn>
+                <SignedOut>
+                  <LoginPage />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/payment/:sessionId"
+            element={
+              <>
+                <SignedIn>
                   <PaymentPage />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </AuthProvider>
+                </SignedIn>
+                <SignedOut>
+                  <LoginPage />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route path="*" element={<LoginPage />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

@@ -9,10 +9,10 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import type { Mentor } from "@/lib/types";
-import { useAuth } from "@/lib/auth-context";
 import { SchedulingModal } from "@/components/SchedulingModel";
 import { SignupDialog } from "@/components/SignUpDialog";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@clerk/clerk-react";
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -22,13 +22,13 @@ export function MentorCard({ mentor }: MentorCardProps) {
   const [isSchedulingModalOpen, setIsSchedulingModalOpen] = useState(false);
   const [isSignupDialogOpen, setIsSignupDialogOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isSignedIn } = useAuth();
 
   // Use a simple threshold to decide if the bio is long enough
   const bioTooLong = mentor.description.length > 200;
 
   const handleSchedule = () => {
-    if (!isAuthenticated) {
+    if (!isSignedIn) {
       setIsSignupDialogOpen(true);
       return;
     }

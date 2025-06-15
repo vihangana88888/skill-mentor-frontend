@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate, Link } from "react-router";
-import { useAuth } from "@/lib/auth-context";
+import {
+  useAuth,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import SkillMentorLogo from "@/assets/logo.webp";
 import { Menu } from "lucide-react";
 import { useState } from "react";
@@ -8,15 +13,8 @@ import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export function Navigation() {
-  const { isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
+  const { isSignedIn } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-    setIsOpen(false);
-  };
 
   const NavItems = ({ mobile = false }: { mobile?: boolean }) => (
     <nav
@@ -48,7 +46,6 @@ export function Navigation() {
       </Link>
     </nav>
   );
-
   const AuthButtons = ({ mobile = false }: { mobile?: boolean }) => (
     <div
       className={cn(
@@ -56,7 +53,7 @@ export function Navigation() {
         mobile && "flex-col items-stretch gap-4 w-full"
       )}
     >
-      {isAuthenticated ? (
+      {isSignedIn ? (
         <>
           <Link
             to="/dashboard"
@@ -67,30 +64,36 @@ export function Navigation() {
               Dashboard
             </Button>
           </Link>
-          <Button
-            onClick={handleLogout}
-            variant="ghost"
-            className={cn(mobile && "w-full")}
+          <div
+            className={cn(
+              "flex items-center",
+              mobile && "w-full justify-center"
+            )}
           >
-            Logout
-          </Button>
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "w-8 h-8",
+                },
+              }}
+            />
+          </div>
         </>
       ) : (
         <>
-          <Link
-            to="/login"
-            className={cn(mobile && "w-full")}
-            onClick={() => mobile && setIsOpen(false)}
+          <SignInButton
+            mode="modal"
+            appearance={{
+              elements: {
+                formButtonPrimary: "bg-primary",
+              },
+            }}
           >
             <Button variant="ghost" className={cn(mobile && "w-full")}>
               Login
             </Button>
-          </Link>
-          <Link
-            to="/login"
-            className={cn(mobile && "w-full")}
-            onClick={() => mobile && setIsOpen(false)}
-          >
+          </SignInButton>
+          <Link to="/login">
             <Button
               className={cn(
                 "bg-primary text-primary-foreground hover:bg-primary/90",

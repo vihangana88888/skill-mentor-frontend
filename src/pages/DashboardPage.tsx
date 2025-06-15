@@ -1,31 +1,41 @@
 import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router";
-import { useAuth } from "@/lib/auth-context";
+import { useAuth } from "@clerk/clerk-react";
 import { CalendarDays } from "lucide-react";
 import { StatusPill } from "@/components/StatusPill";
 import { storage } from "@/lib/storage";
 import { Course } from "@/lib/types";
+import { useNavigate } from "react-router";
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isLoaded, isSignedIn } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
+  const router = useNavigate();
 
   const updateCourses = useCallback(() => {
     const currentCourses = storage.getEnrolledCourses();
     setCourses(currentCourses);
   }, []);
 
-  // Check authentication and redirect if not authenticated
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
+    if (isLoaded && isSignedIn) {
+      updateCourses();
+      const interval = setInterval(updateCourses, 1000);
+      return () => clearInterval(interval);
     }
-    updateCourses();
-    const interval = setInterval(updateCourses, 1000);
-    return () => clearInterval(interval);
-  }, [isAuthenticated, navigate, updateCourses]);
+  }, [isLoaded, isSignedIn, updateCourses]);
+
+  if (!isLoaded) {
+    return (
+      <div className="container py-10">
+        <div className="flex items-center justify-center">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+  if (!isSignedIn) {
+    router("/login");
+  }
 
   if (!courses.length) {
     return (

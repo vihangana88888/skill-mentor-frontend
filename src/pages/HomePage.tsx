@@ -2,8 +2,11 @@ import { MentorCard } from "@/components/MentorCard";
 import { MOCK_MENTORS } from "@/lib/mockData";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@clerk/clerk-react";
 
 export default function HomePage() {
+  const { isSignedIn } = useAuth();
+
   return (
     <div className="py-10">
       <div className="flex flex-col items-center justify-center space-y-8 text-center py-8">
@@ -18,11 +21,19 @@ export default function HomePage() {
           </p>
         </div>
 
-        <Link to="/login">
-          <Button size="lg" className="text-xl">
-            Sign up to see all tutors
-          </Button>
-        </Link>
+        {isSignedIn ? (
+          <Link to="/dashboard">
+            <Button size="lg" className="text-xl">
+              Go to Dashboard
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button size="lg" className="text-xl">
+              Sign up to see all tutors
+            </Button>
+          </Link>
+        )}
       </div>
 
       <div className="space-y-8 mt-8 container bg-background">
