@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { CalendarDays } from "lucide-react";
 import { StatusPill } from "@/components/StatusPill";
 import { storage } from "@/lib/storage";
@@ -10,6 +10,39 @@ export default function DashboardPage() {
   const { isLoaded, isSignedIn } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
   const router = useNavigate();
+  const { getToken } = useAuth();
+  const { user } = useUser();
+
+  useEffect(() => {
+    async function createOrFetchUser() {
+      if (!user) return;
+
+      const token = await getToken({ template: "skillmentor-auth-frontend" });
+      if (!token) return;
+
+      const userPayload = {
+        first_name: user.firstName,
+        last_name: user.lastName,
+        email: user.primaryEmailAddress?.emailAddress,
+        phone_number: "+1234567890",
+        address: "123 Main St, Springfield, USA",
+        age: 20,
+      };
+
+      // const res = await fetch("https://backend.com/api/user", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      //   body: JSON.stringify(userPayload),
+      // });
+      console.log("User payload:", userPayload);
+      console.log("JWT Token:", token);
+    }
+
+    createOrFetchUser();
+  }, [getToken, user]);
 
   const updateCourses = useCallback(() => {
     const currentCourses = storage.getEnrolledCourses();
