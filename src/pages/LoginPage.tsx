@@ -1,4 +1,4 @@
-import { SignIn, SignUp } from "@clerk/clerk-react";
+import { SignUp } from "@clerk/clerk-react";
 import AWSCertified1Img from "@/assets/aws-certified-1.webp";
 import MicrosoftCertified1Img from "@/assets/microsoft-certified-1.webp";
 import AWSCertified3Img from "@/assets/aws-certified-3.webp";

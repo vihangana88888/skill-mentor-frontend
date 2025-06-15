@@ -1,11 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate, Link } from "react-router";
-import {
-  useAuth,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/clerk-react";
+import { Link } from "react-router";
+import { useAuth, SignInButton, UserButton } from "@clerk/clerk-react";
 import SkillMentorLogo from "@/assets/logo.webp";
 import { Menu } from "lucide-react";
 import { useState } from "react";
