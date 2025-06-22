@@ -6,6 +6,11 @@ import { storage } from "@/lib/storage";
 import { Course } from "@/lib/types";
 import { useNavigate } from "react-router";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+if (!BACKEND_URL) {
+  throw new Error("Add your Backend URL to the .env file");
+}
+
 export default function DashboardPage() {
   const { isLoaded, isSignedIn } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
@@ -20,29 +25,49 @@ export default function DashboardPage() {
       const token = await getToken({ template: "skillmentor-auth-frontend" });
       if (!token) return;
 
+      // Prepare a payload that matches with the  backend endpoint requirements
       const userPayload = {
+        clerk_student_id: user.id,
         first_name: user.firstName,
         last_name: user.lastName,
         email: user.primaryEmailAddress?.emailAddress,
-        phone_number: "+1234567890",
-        address: "123 Main St, Springfield, USA",
+        phone_number: "-",
+        address: "-",
         age: 20,
       };
 
-      // const res = await fetch("https://backend.com/api/user", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify(userPayload),
-      // });
-      console.log("User payload:", userPayload);
-      console.log("JWT Token:", token);
+      try {
+        // Perform API call to create/fetch user in backend
+        const createdUser = await fetch(
+          `${BACKEND_URL}/api/v1/academic/student`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(userPayload),
+          }
+        );
+
+        if (!createdUser.ok) {
+          throw new Error("Failed to create/fetch user");
+        }
+
+        // Logging the details to the console
+        const userData = await createdUser.json();
+        console.log("User ID:", user.id);
+        console.log("User Token:", token);
+        console.log("User created/fetched successfully:", userData);
+      } catch (error) {
+        console.error("Error creating/fetching user:", error);
+      }
     }
 
-    createOrFetchUser();
-  }, [getToken, user]);
+    if (isLoaded && isSignedIn) {
+      createOrFetchUser();
+    }
+  }, [isLoaded, isSignedIn]);
 
   const updateCourses = useCallback(() => {
     const currentCourses = storage.getEnrolledCourses();
