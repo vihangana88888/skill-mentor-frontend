@@ -1,5 +1,4 @@
 import { MentorCard } from "@/components/MentorCard";
-import { MOCK_MENTORS } from "@/lib/mockData";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@clerk/clerk-react";

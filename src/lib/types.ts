@@ -68,3 +68,41 @@ export interface Session {
   end_time: string;
   topic: string;
 }
+
+export interface ClassRoom {
+  class_room_id: number;
+  title: string;
+  enrolled_student_count: number;
+}
+
+export interface Mentor {
+  mentor_id: number;
+  clerk_mentor_id: string;
+  first_name: string;
+  last_name: string;
+  address: string;
+  email: string;
+  title: string;
+  session_fee: number;
+  profession: string;
+  subject: string;
+  phone_number: string;
+  qualification: string;
+}
+
+export enum SessionStatus {
+  PENDING = "PENDING",
+  ACCEPTED = "ACCEPTED",
+  COMPLETED = "COMPLETED",
+}
+
+export interface FullSession {
+  session_id: number;
+  student: Student;
+  class_room: ClassRoom;
+  mentor: Mentor;
+  topic: string;
+  start_time: string;
+  end_time: string;
+  session_status: SessionStatus;
+}
