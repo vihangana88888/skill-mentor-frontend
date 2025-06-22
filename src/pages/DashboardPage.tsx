@@ -1,8 +1,7 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { CalendarDays } from "lucide-react";
 import { StatusPill } from "@/components/StatusPill";
-import { storage } from "@/lib/storage";
 import { FullSession } from "@/lib/types";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "@/config/env";
