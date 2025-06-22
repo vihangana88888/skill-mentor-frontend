@@ -28,3 +28,23 @@ export interface User {
   sessions: any[];
   enrolledCourses: Course[];
 }
+
+export interface MentorClass {
+  class_room_id: number;
+  title: string;
+  enrolled_student_count: number;
+  mentor: {
+    mentor_id: number;
+    clerk_mentor_id: string;
+    first_name: string;
+    last_name: string;
+    address: string;
+    email: string;
+    title: string;
+    session_fee: number;
+    profession: string;
+    subject: string;
+    phone_number: string;
+    qualification: string;
+  };
+}

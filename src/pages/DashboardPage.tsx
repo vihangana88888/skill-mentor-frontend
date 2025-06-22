@@ -5,11 +5,7 @@ import { StatusPill } from "@/components/StatusPill";
 import { storage } from "@/lib/storage";
 import { Course } from "@/lib/types";
 import { useNavigate } from "react-router";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-if (!BACKEND_URL) {
-  throw new Error("Add your Backend URL to the .env file");
-}
+import { BACKEND_URL } from "@/config/env";
 
 export default function DashboardPage() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -38,17 +34,14 @@ export default function DashboardPage() {
 
       try {
         // Perform API call to create/fetch user in backend
-        const createdUser = await fetch(
-          `${BACKEND_URL}/api/v1/academic/student`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(userPayload),
-          }
-        );
+        const createdUser = await fetch(`${BACKEND_URL}/academic/student`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(userPayload),
+        });
 
         if (!createdUser.ok) {
           throw new Error("Failed to create/fetch user");
