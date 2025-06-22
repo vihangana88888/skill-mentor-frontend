@@ -133,15 +133,17 @@ export default function DashboardPage() {
 
             {/* Profile Image */}
             <div className="size-24 rounded-full bg-white/10 mb-4 relative">
-              <span className="text-2xl font-semibold text-white absolute left-10 top-8">
-                {course.mentor.first_name.charAt(0)}
-              </span>
-
-              {/* <img
-                src={course.mentorImageUrl}
-                alt={course.mentorName}
-                className="w-full h-full rounded-full object-cover object-top"
-              /> */}
+              {course.mentor.mentor_image ? (
+                <img
+                  src={course.mentor.mentor_image}
+                  alt={course.mentor.first_name}
+                  className="w-full h-full object-cover object-top rounded-full"
+                />
+              ) : (
+                <span className="text-2xl font-semibold">
+                  {course.mentor.first_name.charAt(0)}
+                </span>
+              )}
             </div>
 
             {/* Course Info */}

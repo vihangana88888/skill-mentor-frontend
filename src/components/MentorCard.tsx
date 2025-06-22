@@ -15,7 +15,7 @@ export function MentorCard({ mentorClass }: { mentorClass: MentorClass }) {
   const { isSignedIn } = useAuth();
 
   // Use a simple threshold to decide if the bio is long enough
-  const bioTooLong = mentorClass.mentor.profession.length > 200;
+  const bioTooLong = mentorClass.mentor.subject.length > 200;
 
   const handleSchedule = () => {
     if (!isSignedIn) {
@@ -31,9 +31,7 @@ export function MentorCard({ mentorClass }: { mentorClass: MentorClass }) {
         <div className="p-6 flex-1 flex flex-col">
           <div className="flex justify-between items-start mb-4">
             <div className="space-y-2">
-              <h3 className="font-semibold text-xl">
-                {mentorClass.mentor.subject}
-              </h3>
+              <h3 className="font-semibold text-xl">{mentorClass.title}</h3>
               {/* <div className="flex items-center space-x-2">
                 <ThumbsUp className="size-6" />
                 <p className="text-sm text-muted-foreground">
@@ -41,11 +39,11 @@ export function MentorCard({ mentorClass }: { mentorClass: MentorClass }) {
                 </p>
               </div> */}
               <div className="flex items-center space-x-2">
-                {/* <img
-                  src={mentor.mentorImageUrl}
-                  alt={mentor.mentorName}
+                <img
+                  src={mentorClass.mentor.mentor_image}
+                  alt={mentorClass.mentor.first_name}
                   className="size-6 object-cover object-top rounded-full"
-                /> */}
+                />
                 <span className="text-sm">
                   {mentorClass.mentor.first_name +
                     " " +
@@ -58,14 +56,22 @@ export function MentorCard({ mentorClass }: { mentorClass: MentorClass }) {
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Calendar className="size-6" />
-                <span>Qualifications: {mentorClass.mentor.qualification}</span>
+                <span>{mentorClass.mentor.qualification}</span>
               </div>
             </div>
             <div className="w-36">
               <div className="size-20 bg-muted flex items-center justify-center">
-                <span className="text-2xl font-semibold">
-                  {mentorClass.title.charAt(0)}
-                </span>
+                {mentorClass.class_image ? (
+                  <img
+                    src={mentorClass.class_image}
+                    alt={mentorClass.title}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                ) : (
+                  <span className="text-2xl font-semibold">
+                    {mentorClass.mentor.first_name.charAt(0)}
+                  </span>
+                )}
               </div>
             </div>
           </div>

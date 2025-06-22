@@ -1,4 +1,4 @@
-export interface Mentor {
+export interface MentorOld {
   id: string;
   courseTitle: string;
   description: string;
@@ -33,6 +33,7 @@ export interface MentorClass {
   class_room_id: number;
   title: string;
   enrolled_student_count: number;
+  class_image: string;
   mentor: {
     mentor_id: number;
     clerk_mentor_id: string;
@@ -46,6 +47,7 @@ export interface MentorClass {
     subject: string;
     phone_number: string;
     qualification: string;
+    mentor_image: string;
   };
 }
 
@@ -73,6 +75,7 @@ export interface ClassRoom {
   class_room_id: number;
   title: string;
   enrolled_student_count: number;
+  class_image: string;
 }
 
 export interface Mentor {
@@ -88,6 +91,7 @@ export interface Mentor {
   subject: string;
   phone_number: string;
   qualification: string;
+  mentor_image: string;
 }
 
 export enum SessionStatus {
