@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Building2,
-  Calendar,
-  GraduationCap,
-  ShieldCheck,
-  ThumbsUp,
-} from "lucide-react";
+import { Building2, Calendar, GraduationCap } from "lucide-react";
 import type { MentorClass } from "@/lib/types";
 import { SchedulingModal } from "@/components/SchedulingModel";
 import { SignupDialog } from "@/components/SignUpDialog";

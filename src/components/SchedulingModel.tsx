@@ -51,6 +51,7 @@ export function SchedulingModal({
         date: sessionDateTime.toISOString(),
         mentorId: mentorClass.mentor.mentor_id.toString(),
         classroomID: mentorClass.class_room_id.toString(),
+        topic: mentorClass.title,
       });
       navigate(`/payment/${sessionId}?${searchParams.toString()}`);
     }

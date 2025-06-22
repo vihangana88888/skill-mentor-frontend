@@ -48,3 +48,23 @@ export interface MentorClass {
     qualification: string;
   };
 }
+
+export interface Student {
+  student_id: number;
+  clerk_student_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  address: string;
+  age: number;
+}
+
+export interface Session {
+  student_id: number;
+  class_room_id: number;
+  mentor_id: number;
+  start_time: string;
+  end_time: string;
+  topic: string;
+}
