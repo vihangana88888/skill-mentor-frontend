@@ -4,6 +4,9 @@ import HomePage from "@/pages/HomePage";
 import LoginPage from "@/pages/LoginPage";
 import DashboardPage from "@/pages/DashboardPage";
 import PaymentPage from "@/pages/PaymentPage";
+import AddClassroomPage from "@/pages/AddClassroomPage";
+import AddMentorPage from "@/pages/AddMentorPage";
+import SessionManagementPage from "@/pages/SessionManagementPage";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 function App() {
@@ -19,6 +22,45 @@ function App() {
               <>
                 <SignedIn>
                   <DashboardPage />
+                </SignedIn>
+                <SignedOut>
+                  <LoginPage />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/add-classroom"
+            element={
+              <>
+                <SignedIn>
+                  <AddClassroomPage />
+                </SignedIn>
+                <SignedOut>
+                  <LoginPage />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/add-mentor"
+            element={
+              <>
+                <SignedIn>
+                  <AddMentorPage />
+                </SignedIn>
+                <SignedOut>
+                  <LoginPage />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/session-management"
+            element={
+              <>
+                <SignedIn>
+                  <SessionManagementPage />
                 </SignedIn>
                 <SignedOut>
                   <LoginPage />

@@ -45,11 +45,29 @@ export default function HomePage() {
         </div>
 
         {isSignedIn ? (
-          <Link to="/dashboard">
-            <Button size="lg" className="text-xl">
-              Go to Dashboard
-            </Button>
-          </Link>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Link to="/dashboard">
+              <Button size="lg" className="text-xl">
+                Go to Dashboard
+              </Button>
+            </Link>
+            <Link to="/add-classroom">
+              <Button size="lg" className="text-xl">
+                Add ClassRoom
+              </Button>
+            </Link>
+            <Link to="/add-mentor">
+              <Button size="lg" className="text-xl">
+                Add Mentor
+              </Button>
+            </Link>
+            <Link to="/session-management">
+              <Button size="lg" className="text-xl">
+                Session Management
+              </Button>
+            </Link>
+            
+          </div>
         ) : (
           <Link to="/login">
             <Button size="lg" className="text-xl">

@@ -37,6 +37,11 @@ export function SchedulingModal({
   const [selectedTime, setSelectedTime] = useState<string>();
   const navigate = useNavigate();
 
+  // Add null checks for mentor data
+  const mentor = mentorClass.mentor;
+  const mentorName = mentor ? `${mentor.first_name} ${mentor.last_name}` : "Unknown Mentor";
+  const mentorId = mentor?.mentor_id || 0;
+
   const handleSchedule = () => {
     if (date && selectedTime) {
       const sessionDateTime = new Date(date);
@@ -49,7 +54,7 @@ export function SchedulingModal({
       const sessionId = `${mentorClass.class_room_id}-${Date.now()}`;
       const searchParams = new URLSearchParams({
         date: sessionDateTime.toISOString(),
-        mentorId: mentorClass.mentor.mentor_id.toString(),
+        mentorId: mentorId.toString(),
         classroomID: mentorClass.class_room_id.toString(),
         topic: mentorClass.title,
       });
@@ -64,7 +69,7 @@ export function SchedulingModal({
           <DialogTitle>Schedule this session</DialogTitle>
           <DialogDescription className="sr-only">
             Pick a date and time for your mentoring session with{" "}
-            {mentorClass.mentor.first_name}.
+            {mentorName}.
           </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
