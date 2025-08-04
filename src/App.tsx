@@ -5,10 +5,9 @@ import LoginPage from "@/pages/LoginPage";
 import DashboardPage from "@/pages/DashboardPage";
 import PaymentPage from "@/pages/PaymentPage";
 import AddClassroomPage from "@/pages/AddClassroomPage";
-import AddMentorPage from "@/pages/AddMentorPage";
 import SessionManagementPage from "@/pages/SessionManagementPage";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
-
+import AboutPage from "@/pages/AboutPage";
 function App() {
   return (
     <BrowserRouter>
@@ -47,7 +46,7 @@ function App() {
             element={
               <>
                 <SignedIn>
-                  <AddMentorPage />
+                 
                 </SignedIn>
                 <SignedOut>
                   <LoginPage />
@@ -68,6 +67,7 @@ function App() {
               </>
             }
           />
+          <Route path="/about" element={<AboutPage />} />
           <Route
             path="/payment/:sessionId"
             element={

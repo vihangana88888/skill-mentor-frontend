@@ -26,7 +26,14 @@ export function Navigation() {
         Tutors
       </Link>
       <Link
-        to="/"
+        to="/mentors"
+        className="hover:text-primary transition-colors"
+        onClick={() => mobile && setIsOpen(false)}
+      >
+        Mentors
+      </Link>
+      <Link
+        to="/about"
         className="hover:text-primary transition-colors"
         onClick={() => mobile && setIsOpen(false)}
       >
